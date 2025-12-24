@@ -10,7 +10,6 @@ def archiveFont(font, time):
         path = font.path
 
         if path:
-    
             url = os.path.dirname(path)
     
             if '_Archive' not in url:

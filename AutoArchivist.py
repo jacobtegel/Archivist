@@ -11,16 +11,14 @@ class AutoArchivist(Subscriber):
         # print(font)
         url = os.path.dirname(font.path)
 
-        if '_Archive' not in url:
+        if '_Archive' not in url and 'instances' not in url:
+            
             archive = f'{url}/_Archive'    
-
-            if not any(datetime.now().strftime('%Y-%m-%d') in file for file in os.listdir(archive)):
+            
+            if not any(datetime.now().strftime('%Y-%m-%d') in file and os.path.basename(font.path) in file for file in os.listdir(archive)):
                 print('AutoArchivist is saving font', os.path.basename(font.path), '...')
                 time = datetime.now().strftime('%Y-%m-%d-%H-%M-%S')
                 archiveFont(font, time)
-            else:
-                # print('File does exist.')
-                pass
     
     def fontDocumentDidOpen(self, info):
         self.autoArchive(info['font'])
