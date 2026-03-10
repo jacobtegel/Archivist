@@ -16,7 +16,7 @@ class AutoArchivist(Subscriber):
             archive = f'{url}/_Archive'    
             
             if not any(datetime.now().strftime('%Y-%m-%d') in file and os.path.basename(font.path) in file for file in os.listdir(archive)):
-                print('AutoArchivist is saving font', os.path.basename(font.path), '...')
+                print('AutoArchivist is archiving font', os.path.basename(font.path), '...')
                 time = datetime.now().strftime('%Y-%m-%d-%H-%M-%S')
                 archiveFont(font, time)
     
