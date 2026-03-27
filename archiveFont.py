@@ -21,4 +21,9 @@ def archiveFont(font, time):
                 name = path.replace(url + '/', '')
     
                 newFont = font.copy()
+
+                for g in newFont:
+                    if g.image:
+                        g.clearImage()
+
                 newFont.save(path = f'{archive}/{time}-{name}', formatVersion = 3)
